@@ -1,5 +1,7 @@
 package qonduit.operations.splits;
 
+import com.google.common.base.Preconditions;
+
 import qonduit.operation.OperationRequest;
 
 public class SplitLookupRequest extends OperationRequest {
@@ -32,6 +34,12 @@ public class SplitLookupRequest extends OperationRequest {
     @Override
     public String getOperation() {
         return operation;
+    }
+
+    @Override
+    public void validate() {
+        Preconditions.checkArgument(tableName != null, "tableName is null");
+        Preconditions.checkArgument(row != null, "row is null");
     }
 
 }
